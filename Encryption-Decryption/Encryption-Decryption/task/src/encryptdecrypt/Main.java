@@ -138,6 +138,7 @@ public class Main {
                 return builder.toString();
             }
             default: {
+
                 char[] temp = data.toCharArray();
                 for (int i = 0; i < temp.length; i++) {
                     temp[i] = shiftCalc(temp[i], key);
@@ -169,6 +170,8 @@ public class Main {
                 return builder.toString();
             }
             default: {
+
+
                 char[] temp = data.toCharArray();
                 for (int i = 0; i < temp.length; i++) {
                     temp[i] = deShiftCalc(temp[i], key);

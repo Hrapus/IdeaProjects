@@ -1,0 +1,7 @@
+public static boolean toPrimitive(Boolean b) {
+    if(b != null)
+        return b;
+    else
+        return false;
+
+}

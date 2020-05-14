@@ -1,0 +1,15 @@
+content:
+- Return empty string when argument is null
+- Avoid NPE
+- Only true or false
+- Safe converting
+- Pastry packing optimization
+- Boxes are not just objects!
+- Blacklist
+- Creating a set
+- Output elements
+- Spell checker
+- Displaying pairs
+- Sherlock Holmes and the mystery of anagrams
+- Sherlock Holmes and removing of characters
+- Multiset
