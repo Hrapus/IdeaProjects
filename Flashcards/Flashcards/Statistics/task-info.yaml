@@ -464,6 +464,90 @@ files:
         // just empty class, but not abstract so it can be run
     }
   learner_created: false
+- name: src/flashcards/Main.java
+  visible: true
+  text: |
+    package flashcards;
+
+    import java.util.LinkedHashMap;
+    import java.util.Map;
+    import java.util.Scanner;
+
+    public class Main {
+        public static void main(String[] args) {
+            Scanner scanner = new Scanner(System.in);
+
+            System.out.println("Input the number of cards:");
+            int count = scanner.nextInt();
+            scanner.nextLine();
+
+            Map<String, String> mainMap = new LinkedHashMap<>();
+
+            System.out.print("The card #1:\n");
+            String question = scanner.nextLine();
+            System.out.print("The definition of the card #1:\n");
+            String definition = scanner.nextLine();
+            mainMap.put(question, definition);
+            String answer = "";
+
+            for (int i = 1; i < count; ) {
+                System.out.printf("The card #%d:\n", i + 1);
+                question = scanner.nextLine();
+
+                boolean flag = true;
+
+                while (flag) {
+                    if (mainMap.containsKey(question)) {
+                        System.out.printf("The card \"%s\" already exists. Try again:\n", question);
+                        question = scanner.nextLine();
+                    } else flag = false;
+                }
+
+
+                System.out.printf("The definition of the card #%d:\n", i + 1);
+                definition = scanner.nextLine();
+
+                flag = true;
+
+                while (flag) {
+                    if (mainMap.containsValue(definition)) {
+                        System.out.printf("The definition \"%s\" already exists. Try again:\n", definition);
+                        definition = scanner.nextLine();
+                    } else flag = false;
+                }
+
+                mainMap.put(question, definition);
+                i++;
+            }
+
+
+            for (var e : mainMap.entrySet()) {
+                System.out.printf("Print the definition of \"%s\"\n", e.getKey());
+                answer = scanner.nextLine();
+                String x = "";
+                for (var ex : mainMap.entrySet()) {
+                    if (ex.getValue().equals(answer))
+                        x = ex.getKey();
+                }
+
+                if (!e.getValue().equals(answer) && !x.equals("")) {
+                    System.out.printf("Wrong answer. The correct one is \"%s\", you've just written the definition of \"%s\":\n", e.getValue(), x);
+                } else if (!e.getValue().equals(answer)){
+                    System.out.printf("Wrong answer. The correct one is \"%s\".\n", e.getValue());
+                }
+                else System.out.println("Correct answer.");
+            }
+
+        }
+
+    }
+  learner_created: true
+- name: testLog.txt
+  visible: true
+  learner_created: true
+- name: capitals.txt
+  visible: true
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/44/stages/237/implement
-status: Unchecked
-record: -1
+status: Solved
+record: 6

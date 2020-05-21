@@ -103,6 +103,14 @@ class HashMultiset<E> implements Multiset<E> {
     @Override
     public void union(Multiset<E> other) {
         // implement the method
+        for (E e : other.toSet()){
+            if (!map.containsKey(e)){
+               map.put(e,other.getMultiplicity(e));
+            } else {
+                if (other.getMultiplicity(e) > map.get(e))
+                    map.replace(e, other.getMultiplicity(e));
+            }
+        }
 
 
     }
@@ -116,6 +124,16 @@ class HashMultiset<E> implements Multiset<E> {
     @Override
     public void intersect(Multiset<E> other) {
         // implement the method
+        Map<E, Integer> newSet = new HashMap<>();
+        for (E e : other.toSet()){
+            if (map.containsKey(e)){
+                int a = getMultiplicity(e);
+                int b = other.getMultiplicity(e);
+                int i = Math.min(a, b);
+                newSet.put(e, i);
+            }
+        }
+        map = newSet;
     }
 
     /**

@@ -4,24 +4,25 @@ class Main {
     public static void main(String[] args) {
         // put your code here
         Scanner scanner = new Scanner(System.in);
-        String word1 = scanner.nextLine();
-        String word2 = scanner.nextLine();
+        String word1 = scanner.next();
+        String word2 = scanner.next();
 
         int counter = 0;
-        int counter1 = 0;
+
 
         char[] arr1 = word1.toLowerCase().toCharArray();
         char[] arr2 = word2.toLowerCase().toCharArray();
 
-        SortedMap<Character, Integer> map1 = new TreeMap<>();
-        SortedMap<Character, Integer> map2 = new TreeMap<>();
+        Map<Character, Integer> map1 = new HashMap<>();
+        Map<Character, Integer> map2 = new HashMap<>();
+        Map<Character, Integer> commonMap = new HashMap<>();
 
         for (char c : arr1) {
             if (!map1.containsKey(c)) {
                 map1.put(c, 1);
             } else {
-                int temp = map1.get(c);
-                map1.put(c, ++temp);
+                int x = map1.get(c);
+                map1.replace(c, ++x);
             }
         }
 
@@ -29,35 +30,50 @@ class Main {
             if (!map2.containsKey(c)) {
                 map2.put(c, 1);
             } else {
-                int temp = map2.get(c);
-                map2.put(c, ++temp);
+                int x = map2.get(c);
+                map2.replace(c, ++x);
             }
         }
 
+        for (var entry : map1.entrySet()) {
+            commonMap.put(entry.getKey(), entry.getValue());
+        }
 
-        for (var entry1 : map1.entrySet()) {
-            for (var entry2: map2.entrySet()){
-                if (entry1.getKey().equals(entry2.getKey()) && entry1.getValue().equals(entry2.getValue())){
-                   //System.out.println("Совпадение " + entry1.getKey() + " = " +  entry2.getValue());
-                    counter++;
-                }
-
+        for (var entry : map2.entrySet()) {
+            if (!commonMap.containsKey(entry.getKey())) {
+                commonMap.put(entry.getKey(), entry.getValue());
+            } else {
+                int x = commonMap.get(entry.getKey());
+                commonMap.replace(entry.getKey(), entry.getValue() + x);
             }
         }
 
-//        for (var entry :
-//                map1.entrySet()) {
-//            System.out.println(entry.getKey() + "=" + entry.getValue());
-//        }
-//        System.out.println();
-//        for (var entry :
-//                map2.entrySet()) {
-//            System.out.println(entry.getKey() + "=" + entry.getValue());
-//        }
+        Map<Character, Integer> newSet = new HashMap<>();
 
 
-        if (counter == 0)
-            System.out.println(2);
-        else System.out.println(map1.size() + map2.size() - counter * 2);
+        for (var e : commonMap.entrySet()) {
+            if (map1.containsKey(e.getKey()) && map2.containsKey(e.getKey())) {
+                int a = map1.get(e.getKey());
+                int b = map2.get(e.getKey());
+                int i = Math.min(a, b);
+                newSet.put(e.getKey(), i);
+            }
+        }
+
+        int counterCommon = 0;
+        for (var e : commonMap.entrySet()){
+           counterCommon += e.getValue();
+        }
+
+        int counterOut = 0;
+        for (var e : newSet.entrySet()){
+            counterOut += e.getValue();
+        }
+
+
+            System.out.println(counterCommon - counterOut * 2);
+
     }
+
+
 }
