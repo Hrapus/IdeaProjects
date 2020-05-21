@@ -7,12 +7,14 @@ public class Main {
 
     public static void main(String[] args) {
         // write your code here
-        System.out.print("Enter cells:");
+        System.out.print("Enter cells: ");
         Scanner scanner = new Scanner(System.in);
         String string = scanner.next();
 
+        int counterX = 0;
+        int counterY = 0;
+
         char[] arr = string.toCharArray();
-        char[][] gameBoardArr = new char[3][3];
 
         for (int i = 0; i < arr.length; ) {
             for (int j = 0; j < 3; j++) {
@@ -29,16 +31,34 @@ public class Main {
         System.out.printf("| %c %c %c |\n", gameBoardArr[2][0], gameBoardArr[2][1], gameBoardArr[2][2]);
         System.out.println("---------");
 
+        for (char c : arr) {
+            if (c == 'X') {
+                counterX++;
+            } else if (c == 'O') {
+                counterY++;
+            }
+        }
+
+        if ((Math.abs(counterX - counterY) > 1)) {
+            System.out.println("Impossible");
+        } else if (checkIsWin('X') && checkIsWin('O')) {
+            System.out.println("Impossible");
+        } else if (checkIsWin('X')) {
+            System.out.println("X wins");
+        } else if (checkIsWin('O')) {
+            System.out.println("O wins");
+        } else if ((counterX + counterY) == 9) {
+            System.out.println("Draw");
+        } else System.out.println("Game not finished");
+
+
     }
 
-    static String CheckIsWin(char symbol) {
+    static boolean checkIsWin(char symbol) {
         //Проверяем горизонталь и вертикаль
-        int win = 0;
-        int mdig, supdig, hor, ver;
-
         for (int i = 0; i < 3; i++) {
-            hor = 0;
-            ver = 0;
+            int hor = 0;
+            int ver = 0;
             for (int j = 0; j < 3; j++) {
                 if (gameBoardArr[i][j] == symbol) {
                     hor++;
@@ -46,27 +66,23 @@ public class Main {
                 if (gameBoardArr[j][i] == symbol) {
                     ver++;
                 }
+                if (hor == 3 || ver == 3) {
+                    return true;
+                }
             }
-            if (hor == 3 || ver == 3) {
-                return true;
-            }
-
         }
 
-        mdig = 0;
-        supdig = 0;
         //Диагонали
+        int mdig = 0;
+        int supdig = 0;
         for (int i = 0; i < 3; i++) {
-            if (gameBoardArr[i,i] ==symbol){
+            if (gameBoardArr[i][i] == symbol) {
                 mdig++;
             }
-            if (gameBoardArr[i,2 - i] ==symbol ){
+            if (gameBoardArr[i][2 - i] == symbol) {
                 supdig++;
             }
         }
-        if (mdig == 3 || supdig == 3) {
-            return true;
-        }
-
+        return mdig == 3 || supdig == 3;
     }
 }
