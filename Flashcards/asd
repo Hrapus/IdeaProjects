@@ -1,0 +1,37 @@
+Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):
+add
+The card:
+c1
+The definition of the card:
+d1
+The pair ("c1":"d1") has been added.
+
+Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):
+c2
+
+Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):
+add
+The card:
+c2
+The definition of the card:
+d2
+The pair ("c2":"d2") has been added.
+
+Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):
+ask
+How many times to ask?
+3
+Print the definition of "c2":
+d2
+Correct answer.
+Print the definition of "c1":
+d1
+Correct answer.
+Print the definition of "c2":
+d2
+Correct answer.
+
+Input the action (add, remove, import, export, ask, exit, log, hardest card, reset stats):
+log
+File name:
+asd
