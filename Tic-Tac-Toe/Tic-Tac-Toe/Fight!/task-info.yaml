@@ -422,6 +422,153 @@ files:
         }
     }
   learner_created: false
+- name: src/tictactoe/Main.java
+  visible: true
+  text: |
+    package tictactoe;
+
+    import java.util.Scanner;
+
+    public class Main {
+        static char[][] gameBoardArr = new char[3][3];
+
+        public static void main(String[] args) {
+            // write your code here
+            System.out.print("Enter cells: ");
+            Scanner scanner = new Scanner(System.in);
+            String string = scanner.next();
+
+            int counterX = 0;
+            int counterY = 0;
+
+            char[] arr = string.toCharArray();
+            for (int i = 0; i < arr.length; ) {
+                for (int j = 0; j < 3; j++) {
+                    for (int k = 0; k < 3; k++) {
+                        gameBoardArr[j][k] = arr[i];
+                        i++;
+                    }
+                }
+            }
+
+            printMatrix(gameBoardArr);
+
+            int[] checked = inputChecker(scanner.nextLine());
+
+            gameBoardArr[checked[0]][checked[1]] = 'X';
+            printMatrix(gameBoardArr);
+
+
+            //System.out.println(checked[0] + " === " + checked[1]);
+
+
+    //        for (char c : arr) {
+    //            if (c == 'X') {
+    //                counterX++;
+    //            } else if (c == 'O') {
+    //                counterY++;
+    //            }
+    //        }
+    //
+    //        if ((Math.abs(counterX - counterY) > 1)) {
+    //            System.out.println("Impossible");
+    //        } else if (checkIsWin('X') && checkIsWin('O')) {
+    //            System.out.println("Impossible");
+    //        } else if (checkIsWin('X')) {
+    //            System.out.println("X wins");
+    //        } else if (checkIsWin('O')) {
+    //            System.out.println("O wins");
+    //        } else if ((counterX + counterY) == 9) {
+    //            System.out.println("Draw");
+    //        } else System.out.println("Game not finished");
+
+
+        }
+
+        static boolean checkIsWin(char symbol) {
+            //Проверяем горизонталь и вертикаль
+            for (int i = 0; i < 3; i++) {
+                int hor = 0;
+                int ver = 0;
+                for (int j = 0; j < 3; j++) {
+                    if (gameBoardArr[i][j] == symbol) {
+                        hor++;
+                    }
+                    if (gameBoardArr[j][i] == symbol) {
+                        ver++;
+                    }
+                    if (hor == 3 || ver == 3) {
+                        return true;
+                    }
+                }
+            }
+
+            //Диагонали
+            int mdig = 0;
+            int supdig = 0;
+            for (int i = 0; i < 3; i++) {
+                if (gameBoardArr[i][i] == symbol) {
+                    mdig++;
+                }
+                if (gameBoardArr[i][2 - i] == symbol) {
+                    supdig++;
+                }
+            }
+            return mdig == 3 || supdig == 3;
+        }
+
+        static int[] inputChecker(String string){
+            boolean flag = true;
+            int x = 0;
+            int y = 0;
+            Scanner scanner = new Scanner(System.in);
+
+            while (flag){
+                System.out.print("Enter the coordinates: ");
+                String[] asd = scanner.nextLine().split( " ");
+
+                try {
+                    x = Integer.parseInt(asd[0]);
+                    y = Integer.parseInt(asd[1]);
+
+                    if ((x < 1 || x > 3) || (y < 1 || y > 3)){
+                        System.out.println("Coordinates should be from 1 to 3!");
+                    } else if (gameBoardArr[transpondOne(y)][transpondTwo(x)] == 'O' || gameBoardArr[transpondOne(y)][transpondTwo(x)] == 'X'){
+                        System.out.println("This cell is occupied! Choose another one!");
+                    }
+                    else {
+                        flag = false;
+                    }
+
+                } catch (NumberFormatException | NullPointerException exception){
+                    System.out.println("You should enter numbers!");
+                    flag = true;
+                }
+            }
+            return new int[]{transpondOne(y), transpondTwo(x)};
+        }
+
+        static int transpondOne(int x){
+            if (x == 1) return 2;
+            else if (x == 2) return 1;
+            else return 0;
+        }
+
+        static int transpondTwo(int y){
+            if (y == 1) return 0;
+            else if (y == 2) return 1;
+            else return 2;
+        }
+
+        static void printMatrix(char[][] gameBoardArr){
+            System.out.println("---------");
+            System.out.printf("| %c %c %c |\n", gameBoardArr[0][0], gameBoardArr[0][1], gameBoardArr[0][2]);
+            System.out.printf("| %c %c %c |\n", gameBoardArr[1][0], gameBoardArr[1][1], gameBoardArr[1][2]);
+            System.out.printf("| %c %c %c |\n", gameBoardArr[2][0], gameBoardArr[2][1], gameBoardArr[2][2]);
+            System.out.println("---------");
+        }
+    }
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/48/stages/259/implement
-status: Unchecked
+status: Solved
 record: -1
