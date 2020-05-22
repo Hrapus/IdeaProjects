@@ -21,6 +21,7 @@ public class Main {
         int[] checked = inputChecker(scanner.nextLine());
 
         while (true) {
+
             gameBoardArr[checked[0]][checked[1]] = 'X';
             printMatrix(gameBoardArr);
             if (checkIsWin('X')) {
@@ -49,7 +50,12 @@ public class Main {
 
             System.out.print("Enter the coordinates: ");
             checked = inputChecker(scanner.nextLine());
+
         }
+
+
+
+
     }
 
     static boolean checkIsWin(char symbol) {

@@ -2,6 +2,9 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/Concat all strings without digits/Problems-Concat_all_strings_without_digits.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/Concat all strings without digits/Problems-Concat_all_strings_without_digits.iml" group="Tic-Tac-Toe/Problems-Concat_all_strings_without_digits" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/Concat all strings without digits/Problems-Concat_all_strings_without_digits_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/Concat all strings without digits/Problems-Concat_all_strings_without_digits_main.iml" group="Tic-Tac-Toe/Problems-Concat_all_strings_without_digits" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/Concat all strings without digits/Problems-Concat_all_strings_without_digits_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/Concat all strings without digits/Problems-Concat_all_strings_without_digits_test.iml" group="Tic-Tac-Toe/Problems-Concat_all_strings_without_digits" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/Harry Potter/Problems-Harry_Potter.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/Harry Potter/Problems-Harry_Potter.iml" group="Tic-Tac-Toe/Problems-Harry_Potter" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/Harry Potter/Problems-Harry_Potter_main.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/Harry Potter/Problems-Harry_Potter_main.iml" group="Tic-Tac-Toe/Problems-Harry_Potter" />
       <module fileurl="file://$PROJECT_DIR$/.idea/modules/Problems/Harry Potter/Problems-Harry_Potter_test.iml" filepath="$PROJECT_DIR$/.idea/modules/Problems/Harry Potter/Problems-Harry_Potter_test.iml" group="Tic-Tac-Toe/Problems-Harry_Potter" />
