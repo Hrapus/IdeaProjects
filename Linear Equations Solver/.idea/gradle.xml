@@ -11,16 +11,7 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/Problems/An expression with large numbers" />
-            <option value="$PROJECT_DIR$/Problems/Area of a circle" />
-            <option value="$PROJECT_DIR$/Problems/Comparing numbers" />
-            <option value="$PROJECT_DIR$/Problems/Distance" />
-            <option value="$PROJECT_DIR$/Problems/Double factorial" />
-            <option value="$PROJECT_DIR$/Problems/Find X" />
-            <option value="$PROJECT_DIR$/Problems/Heron's formula" />
-            <option value="$PROJECT_DIR$/Problems/Pow" />
-            <option value="$PROJECT_DIR$/Problems/Quadratic equation" />
-            <option value="$PROJECT_DIR$/Readability Score/task" />
+            <option value="$PROJECT_DIR$/Linear Equations Solver/task" />
             <option value="$PROJECT_DIR$/util" />
           </set>
         </option>
