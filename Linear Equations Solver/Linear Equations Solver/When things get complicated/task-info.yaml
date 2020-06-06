@@ -482,6 +482,83 @@ files:
         }
     }
   learner_created: false
+- name: output.txt
+  visible: true
+  text: |
+    1.0
+    1.0
+  learner_created: true
+- name: out.txt
+  visible: true
+  text: |
+    0.21820058234235296
+    0.3886357097625328
+    0.23368846425840228
+    0.5804130341264104
+    -0.18672509518968186
+    0.3535599775759053
+    -0.5596661622083989
+    -0.47057133049683186
+    -0.3945589792856226
+    -0.4577408854539498
+    0.371044695707244
+    -0.19593567201465412
+    1.1402904217137635
+    0.28081610303503196
+    -0.8712103045039047
+    -0.33548695376012494
+    -0.13089208871108768
+    -0.3007993374368587
+    0.6354996520638136
+    0.47156285858406827
+  learner_created: true
+- name: src/solver/Main.java
+  visible: true
+  text: "package solver;\n\nimport java.io.File;\nimport java.io.FileNotFoundException;\n\
+    import java.io.FileWriter;\nimport java.io.IOException;\nimport java.lang.reflect.Array;\n\
+    import java.util.ArrayList;\nimport java.util.Arrays;\nimport java.util.List;\n\
+    import java.util.Scanner;\n\npublic class Main {\n    public static void main(String[]\
+    \ args) throws IOException {\n        File file = new File(args[1]);\n       \
+    \ Scanner scanner = null;\n        try {\n            scanner = new Scanner(file);\n\
+    \        } catch (FileNotFoundException e) {\n            e.printStackTrace();\n\
+    \        }\n\n        String s = scanner.nextLine();\n        int lineCount =\
+    \ Integer.parseInt(s);\n\n        double[][] mainMatrix = new double[lineCount][lineCount\
+    \ + 1];\n\n        for (int i = 0; i < lineCount; i++) {\n            for (int\
+    \ j = 0; j <= lineCount; j++) {\n                mainMatrix[i][j] = Double.parseDouble(scanner.next());\n\
+    \            }\n        }\n        scanner.close();\n\n\n        Matrix matrix\
+    \ = new Matrix(mainMatrix);\n        matrix.firstColumn();\n        System.out.println();\n\
+    \        matrix.print();\n        System.out.println();\n        matrix.lastColumn();\n\
+    \        matrix.print();\n        \n        File file1 = new File(args[3]);\n\
+    \        FileWriter writer = new FileWriter(file1);\n        for (double d :\n\
+    \                matrix.answer()) {\n            writer.write(Double.toString(d)\
+    \ + \"\\n\");\n        }\n        writer.close();\n\n        \n\n\n    }\n}\n\n\
+    class Matrix {\n\n    double[][] matrix;\n\n    public Matrix(double[][] mainMatrix)\
+    \ {\n        this.matrix = mainMatrix;\n    }    \n    \n\n\n    public void firstColumn()\
+    \ {\n        //рассчет первой строки\n        for (int l = 0; l < matrix.length\
+    \ - 1; l++) {\n            double x = matrix[l][l];\n            for (int i =\
+    \ l; i < matrix[0].length; i++) {\n                matrix[l][i] = matrix[l][i]\
+    \ / x;\n            }\n\n            for (int k = l + 1; k < matrix.length; k++)\
+    \ {\n                //рассчет одной строки\n                double coef = matrix[k][l];\n\
+    \                for (int j = l; j < matrix[0].length; j++) {\n              \
+    \      matrix[k][j] = matrix[k][j] - matrix[l][j] * coef;\n                }\n\
+    \            }\n        }\n\n        //рассчет последней строки\n        double\
+    \ lastCoef = matrix[matrix.length - 1][matrix[0].length - 2];\n        matrix[matrix.length\
+    \ - 1][matrix[0].length - 2] = matrix[matrix.length - 1][matrix[0].length - 2]\
+    \ / lastCoef;\n        matrix[matrix.length - 1][matrix[0].length - 1] = matrix[matrix.length\
+    \ - 1][matrix[0].length - 1] / lastCoef;\n    }\n\n    public void lastColumn()\
+    \ {\n\n        for (int l = matrix.length - 2; l >= 0; l--) {\n\n            //р\
+    ассчет столбца\n            for (int i = l; i >= 0; i--) {\n                //р\
+    ассчет одной строки\n                double coef = matrix[i][l + 1];\n       \
+    \         for (int k = matrix[0].length - 1; k >= 0; k--) {\n                \
+    \    matrix[i][k] = matrix[i][k] - matrix[l + 1][k] * coef;\n                }\n\
+    \            }\n\n        }\n\n    }\n\n\n    public void print() {\n        for\
+    \ (double[] doubles : matrix) {\n            for (double aDouble : doubles) {\n\
+    \                System.out.printf(\" %.5f\", aDouble);\n            }\n     \
+    \       System.out.println();\n        }\n    } \n    \n    public double[] answer(){\n\
+    \        double[] a = new double[matrix.length];\n        for (int i = 0; i <\
+    \ matrix.length; i++) {\n            a[i] = matrix[i][matrix[0].length - 1];\n\
+    \        }\n        return a;\n    }\n    \n}\n\n\n\n\n\n\n\n\n\n"
+  learner_created: true
 feedback_link: https://hyperskill.org/projects/40/stages/212/implement
 status: Unchecked
 record: -1

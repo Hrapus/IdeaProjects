@@ -17,13 +17,19 @@ class Client {
 
         Command turnOnTV = new TurnOnCommand(tv);
         /* write your code here */
+        turnOnTV.execute();
 
         for (int i = 0; i < 3; i++) {
         /* write your code here */
+            Channel channel = new Channel(channelList[i]);
+            changeChannel = new ChangeChannelCommand(channel);
+            controller.setCommand(changeChannel);
+            controller.executeCommand();
         }
 
         Command turnOffTV = new TurnOffCommand(tv);
         /* write your code here */
+        turnOffTV.execute();
     }
 }
 
@@ -35,6 +41,7 @@ class TV {
 
     void turnOff() {
         /* write your code here */
+        System.out.println("Turning off the TV");
     }
 }
 
@@ -43,6 +50,7 @@ class Channel {
 
     Channel(int channelNumber) {
         /* write your code here */
+        this.channelNumber = channelNumber;
     }
 
     void changeChannel() {
@@ -53,10 +61,12 @@ class Channel {
 
 interface Command {
     /* write your code here */
+    public void execute();
 }
 
 class TurnOnCommand implements Command {
     /* write your code here */
+    private TV tv;
 
     TurnOnCommand(TV tv) {
         this.tv = tv;
@@ -65,11 +75,13 @@ class TurnOnCommand implements Command {
     @Override
     public void execute() {
        /* write your code here */
+        tv.turnOn();
     }
 }
 
 class TurnOffCommand implements Command {
     /* write your code here */
+    private TV tv;
 
     TurnOffCommand(TV tv) {
         this.tv = tv;
@@ -78,6 +90,7 @@ class TurnOffCommand implements Command {
     @Override
     public void execute() {
         /* write your code here */
+        tv.turnOff();
     }
 }
 
@@ -90,6 +103,9 @@ class ChangeChannelCommand implements Command {
 
     @Override
     /* write your code here */
+    public void execute(){
+        channel.changeChannel();
+    }
 }
 
 class Controller {
@@ -99,5 +115,6 @@ class Controller {
     }
     void executeCommand() {
         /* write your code here */
+        command.execute();
     }
 }
