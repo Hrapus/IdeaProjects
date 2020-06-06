@@ -21,10 +21,8 @@ class Client {
 
         for (int i = 0; i < 3; i++) {
         /* write your code here */
-            Channel channel = new Channel(channelList[i]);
-            changeChannel = new ChangeChannelCommand(channel);
-            controller.setCommand(changeChannel);
-            controller.executeCommand();
+            changeChannel = new ChangeChannelCommand(new Channel(channelList[i]));
+            changeChannel.execute();
         }
 
         Command turnOffTV = new TurnOffCommand(tv);
